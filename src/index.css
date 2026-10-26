@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/instrument-sans";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    /* Tipografía propia: serif con carácter para títulos, sans cálida para texto, mono para los números de ticket */
+    --font-heading: 'Fraunces Variable', Georgia, serif;
+    --font-sans: 'Instrument Sans Variable', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+
+    /* Colores de la ventanilla: prioridad y estado */
+    --color-baja: var(--baja);
+    --color-media: var(--media);
+    --color-alta: var(--alta);
+    --color-proceso: var(--proceso);
+
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    /* papel crema + tinta verde + naranja de sello */
+    --background: #f2ebdd;
+    --foreground: #1b2a22;
+    --card: #fbf7ee;
+    --card-foreground: #1b2a22;
+    --popover: #fbf7ee;
+    --popover-foreground: #1b2a22;
+    --primary: #1f4d3a;
+    --primary-foreground: #f7f2e7;
+    --secondary: #e7dfcc;
+    --secondary-foreground: #1b2a22;
+    --muted: #ebe3d1;
+    --muted-foreground: #66665a;
+    --accent: #e3d6b6;
+    --accent-foreground: #1b2a22;
+    --destructive: #b42318;
+    --border: #d6cbb0;
+    --input: #c9bd9c;
+    --ring: #d9480f;
+    --radius: 0.55rem;
+
+    --baja: #3f7d58;
+    --media: #b7791f;
+    --alta: #b42318;
+    --proceso: #1d5c7a;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* grano de papel muy suave */
+    background-image: radial-gradient(rgb(27 42 34 / 0.045) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  html {
+    @apply font-sans;
+  }
+  h1, h2, h3 {
+    @apply font-heading;
+  }
+  ::selection {
+    background: #f6c9a8;
+    color: #1b2a22;
+  }
+}
+
+/* Sello que aparece sobre las solicitudes resueltas */
+@keyframes sellar {
+  0%   { opacity: 0; transform: rotate(-9deg) scale(1.7); }
+  60%  { opacity: 1; transform: rotate(-9deg) scale(0.94); }
+  100% { opacity: 1; transform: rotate(-9deg) scale(1); }
+}
+.sello {
+  animation: sellar 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
